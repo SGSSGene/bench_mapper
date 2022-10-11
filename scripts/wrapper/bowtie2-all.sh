@@ -8,7 +8,7 @@ if [ ! -e "${tmp}/genome.fa" ]; then
 fi
 
 ee=$(expr ${error} \* 2 || true)
-val=$(stdbuf -oL timeout 3600s bowtie2 -x "${tmp}/index" -f "${fasta_file}" -t --end-to-end --xeq --mp 2 --np 2 --rdg 0,2 --rfg 0,2 --score-min C,-${ee},0 2>&1 1> ${tmp_s}.sam \
+val=$(stdbuf -oL timeout 3600s bowtie2 --all -x "${tmp}/index" -f "${fasta_file}" -t --end-to-end --xeq --mp 2 --np 2 --rdg 0,2 --rfg 0,2 --score-min C,-${ee},0 2>&1 1> ${tmp_s}.sam \
     | grep "Time searching" | awk -F ":" '{print $2*3600+$3*60+$4 "s"}')
 
 if [ ! -z "${val}" ]; then
