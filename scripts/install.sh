@@ -48,7 +48,7 @@ mkdir submodules/seqan/build
 (
     cd submodules/seqan/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
-    make rabema_evaluate rabema_build_gold_standard mason_simulator razers3 rabema_prepare_sam yara_mapper
+    make rabema_evaluate rabema_build_gold_standard mason_simulator razers3 rabema_prepare_sam
 )
 
 

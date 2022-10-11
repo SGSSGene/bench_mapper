@@ -17,5 +17,6 @@ fasta_file=${data}/reads/sampled_${len}_${error}.fasta
 sam_file=${data}/alignment/${tool}_${len}_${error}.sam
 
 if [ -e "${sam_file}" ]; then
+    echo "exists: ${sam_file}"
     exit
 fi
