@@ -11,4 +11,4 @@ mamba install -c bioconda -y bwa bowtie2 libgcrypt
 brew install google-sparsehash
 
 # Build tools
-scripts/install.sh
+scripts/compile.sh

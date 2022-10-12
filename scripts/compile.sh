@@ -5,7 +5,7 @@ set -Eeuo pipefail
 cd "$(dirname "$0")"/..
 
 # Build tools
-rm -r submodules/fmindex-collection/build
+rm -rf submodules/fmindex-collection/build
 mkdir submodules/fmindex-collection/build
 (
     cd submodules/fmindex-collection/build
@@ -13,7 +13,7 @@ mkdir submodules/fmindex-collection/build
     make
 )
 
-rm -r submodules/radixSA64/build
+rm -rf submodules/radixSA64/build
 mkdir submodules/radixSA64/build
 (
     cd submodules/radixSA64/build
@@ -29,7 +29,7 @@ mkdir submodules/seqan3_tools/build
     make
 )
 
-rm -r submodules/columba/build
+rm -rf submodules/columba/build
 mkdir submodules/columba/build
 (
     cd submodules/columba/build
@@ -43,7 +43,7 @@ mkdir submodules/columba/build
 )
 
 
-rm -r submodules/seqan/build
+rm -rf submodules/seqan/build
 mkdir submodules/seqan/build
 (
     cd submodules/seqan/build
