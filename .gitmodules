@@ -9,10 +9,10 @@
 	url = ../fmindex-collection.git
 [submodule "submodules/radixSA64"]
 	path = submodules/radixSA64
-	url = ../../biointec/mariusmni/radixSA64.git
+	url = ../../mariusmni/radixSA64.git
 [submodule "submodules/seqan"]
 	path = submodules/seqan
 	url = ../../seqan/seqan.git
 [submodule "submodules/seqan3_tools"]
 	path = submodules/seqan3_tools
-	url = ../../seqan/seqan3_tools.git
+	url = ../../SGSSGene/seqan3_tools.git
