@@ -1,0 +1,18 @@
+[submodule "submodules/bwolo"]
+	path = submodules/bwolo
+	url = ../bwolo.git
+[submodule "submodules/columba"]
+	path = submodules/columba
+	url = ../../biointec/columba.git
+[submodule "submodules/fmindex-collection"]
+	path = submodules/fmindex-collection
+	url = ../fmindex-collection.git
+[submodule "submodules/radixSA64"]
+	path = submodules/radixSA64
+	url = ../../biointec/mariusmni/radixSA64.git
+[submodule "submodules/seqan"]
+	path = submodules/seqan
+	url = ../../seqan/seqan.git
+[submodule "submodules/seqan3_tools"]
+	path = submodules/seqan3_tools
+	url = ../../seqan/seqan3_tools.git
