@@ -25,7 +25,7 @@ rm -rf submodules/seqan3_tools/build
 mkdir submodules/seqan3_tools/build
 (
     cd submodules/seqan3_tools/build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native" -DNODIVSUFSORT=1
     make
 )
 
