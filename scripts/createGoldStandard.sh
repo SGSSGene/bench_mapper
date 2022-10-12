@@ -10,7 +10,7 @@ mkdir -p "${tmp}"
 for e in ${errors[@]}; do
     for l in ${lengths[@]}; do
         f=${t}_${l}_${e}
-        file_sam=${data}/alignment/${f}.sam
+        file_sam=${data}/alignment/${t}/${l}_${e}.sam
         file_bam=${tmp}/${f}.sam.sorted.bam
         file_gold=${gsi}/${f}.gsi
         per=$(expr $e \* 100 / ${l} || true)

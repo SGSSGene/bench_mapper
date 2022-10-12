@@ -10,13 +10,15 @@ tmp="${data}/tmp/${tool}"
 mkdir -p ${tmp}
 tmp_s="${tmp}/tmp_${len}_${error}"
 
-mkdir -p ${data}/alignment
+mkdir -p ${data}/alignment/${tool}
+mkdir -p ${data}/timing/${tool}
 
 index=${data}/reference_genome.fasta
 fasta_file=${data}/reads/sampled_${len}_${error}.fasta
-sam_file=${data}/alignment/${tool}_${len}_${error}.sam
+sam_file=${data}/alignment/${tool}/${len}_${error}.sam
+timing_file=${data}/timing/${tool}/time_${len}_${error}.txt
+
 
 if [ -e "${sam_file}" ]; then
-    echo "exists: ${sam_file}"
     exit
 fi

@@ -42,8 +42,7 @@ if [ ! -z "${val}" ]; then
         }
     }' >> ${tmp_s}.2.sam
     samtools sort -O sam -n ${tmp_s}.2.sam > ${sam_file}
-
+    echo ${val} > ${timing_file}
 else
-    echo "3600s"
-    echo "" > ${output}
+    echo "3600s" > ${timing_file}
 fi

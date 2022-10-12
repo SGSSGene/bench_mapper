@@ -9,7 +9,7 @@ if [ ! -e "${tmp}/index.fa" ]; then
     bwa index "${tmp}/index.fa"
 fi
 
-bwa aln -n $error ${tmp}/index.fa ${fasta_file} 2>&1 1> ${tmp_s}.sai | grep "calculate SA coordinate" | awk '{printf "%ss\n",$5}'
+bwa aln -n $error ${tmp}/index.fa ${fasta_file} 2>&1 1> ${tmp_s}.sai | grep "calculate SA coordinate" | awk '{printf "%ss\n",$5}' > ${timing_file}
 bwa samse ${tmp}/index.fa ${tmp_s}.sai ${fasta_file} > ${tmp_s}.sam 2>/dev/null
 
 

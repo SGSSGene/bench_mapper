@@ -9,7 +9,7 @@ if [ ! -e "${tmp}/index.fa" ]; then
     bwa index "${tmp}/index.fa"
 fi
 
-bwa mem -A 1 -B 0 -O 0,0 -E 1,1 -T ${minlen} "${tmp}/index.fa" "${fasta_file}" 2>&1 1> "${tmp_s}.sam" | grep "Real time" | awk '{printf "%ss\n",$4}'
+bwa mem -A 1 -B 0 -O 0,0 -E 1,1 -T ${minlen} "${tmp}/index.fa" "${fasta_file}" 2>&1 1> "${tmp_s}.sam" | grep "Real time" | awk '{printf "%ss\n",$4}' > ${timing_file}
 
 samtools view ${tmp_s}.sam --header > ${tmp_s}.2.sam
 samtools view ${tmp_s}.sam | awk -v OFS='\t' '{

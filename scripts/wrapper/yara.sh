@@ -17,6 +17,6 @@ TT=$(cat "${tmp_s}.log" | grep "Total time:" | awk '{print $3}')
 T1=$(cat "${tmp_s}.log" | grep "Genome loading time:" | awk '{print $4}')
 T2=$(cat "${tmp_s}.log" | grep "Reads loading time:" | awk '{print $4}')
 T3=$(cat "${tmp_s}.log" | grep "Output time:" | awk '{print $3}')
-bc <<< $(echo ${TT} - ${T1} - ${T2} - ${T3})
+echo $(bc <<< $(echo ${TT} - ${T1} - ${T2} - ${T3}))s > ${timing_file}
 
 

@@ -10,7 +10,7 @@ fi
 
 bwolo -f $fasta_file -i "${tmp}/index" -s -${error} --rev-compl 2>&1 1> ${tmp_s}.raw \
     | grep "Search time" \
-    | awk '{printf "%ss\n",$3}'
+    | awk '{printf "%ss\n",$3}' > ${timing_file}
 
 cat ${tmp_s}.raw \
     | awk -F ":" '{print $2}' \

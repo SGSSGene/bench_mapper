@@ -9,7 +9,7 @@ example --query "${fasta_file}" --index "${index}" --ext ${ext} --min_k $error \
         --maxhitperquery 1 --mode besthits \
         | grep "^${ext}" > ${tmp_s}.log
 
-cat ${tmp_s}.log | grep "^${ext}" | awk '{printf "%s\n",$3}'
+cat ${tmp_s}.log | grep "^${ext}" | awk '{printf "%s\n",$3}' > ${timing_file}
 cat ${tmp_s}.raw.pos | sort -n > ${tmp_s}.pos
 rm ${tmp_s}.raw.pos
 
