@@ -2,6 +2,8 @@
 
 source $(dirname "$0")/setup.sh
 
+source .miniconda3/bin/activate
+
 minlen=$(expr $len - $error)
 
 if [ ! -e "${tmp}/genome.fa" ]; then

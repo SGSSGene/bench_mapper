@@ -3,6 +3,7 @@ set -Eeuo pipefail
 DATA="${DATA:-data}"
 LENGTHS="${LENGTHS:-"(50 100 150 200)"}"
 ERRORS="${ERRORS:-"(0 1 2 3 4 5)"}"
+#export TOOLS="(sahara sahara-onebesthit sahara-allbesthits yara bowtie2 columba columba-naive columba-pigeon bwa-mem bwa-aln razers3 bowtie2-all bwolo)"
 TOOLS=${TOOLS:-"(razers3)"}
 
 script_path="$(dirname "$0")"

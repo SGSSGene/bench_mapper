@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-source $(dirname "$0")/setup.sh
+set -Eeuo pipefail
 
-t="razers3"
+source $(dirname "$0")/setup.sh
 
 for t in ${tools[@]}; do
     for e in ${errors[@]}; do

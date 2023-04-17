@@ -56,3 +56,10 @@ mkdir -p submodules/seqan/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
     make rabema_evaluate rabema_build_gold_standard mason_simulator razers3 rabema_prepare_sam
 )
+
+
+(
+    cd submodules/bowtie2
+    test "${clean}" && make clean
+    make
+)

@@ -16,3 +16,6 @@
 [submodule "submodules/seqan3_tools"]
 	path = submodules/seqan3_tools
 	url = ../../SGSSGene/seqan3_tools.git
+[submodule "submodules/bowtie2"]
+	path = submodules/bowtie2
+	url = https://github.com/BenLangmead/bowtie2.git

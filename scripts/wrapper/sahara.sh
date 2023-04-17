@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 source $(dirname "$0")/setup.sh
+set -Eeuo pipefail
 
 ext=i32a
 algo=ng21
@@ -15,4 +16,3 @@ rm ${tmp_s}.raw.pos
 st_local_mapper --ref ${index} --queries ${data}/reads/sampled_${len}_${error}.fasta \
                 --errors ${error} --positions "${tmp_s}.pos" \
                 --output "${sam_file}" --reverse_queries 2> /dev/null
-

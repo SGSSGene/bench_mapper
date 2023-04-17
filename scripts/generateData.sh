@@ -41,7 +41,7 @@ wait
 
 for e in ${errors[@]}; do
     for len in ${lengths[@]}; do
-        st_sam_filter ${data}/reads/simulated_${len}.sam ${data}/reads/sampled_${len}_${e}.sam --fasta ${data}/reads/sampled_${len}_${e}.fasta --dna4 --num 1000 --minError ${e} --error ${e}
+        st_sam_filter ${data}/reads/simulated_${len}.sam ${data}/reads/sampled_${len}_${e}.sam --fasta ${data}/reads/sampled_${len}_${e}.fasta --dna4 --num 100000 --minError ${e} --error ${e}
     done
     wait
 done

@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 source $(dirname "$0")/setup.sh
+set -Eeuo pipefail
 
 #bowtie2 has sam
 #bwa_aln has sam
@@ -23,12 +24,14 @@ for t in ${tools[@]}; do
 
             per=$(expr ${e} \* 100 / ${l} || true)
             if [ ! -e "${file_sam}" ] || [ ! -e ${file_gold} ]; then
-                echo ${file_sam} or ${file_gold}
+                echo ${file_sam} or ${file_gold} is missing to run $t
                 continue
             fi
             echo -n "$t $e $l "
-            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Normalized intervals found \[%\]" | awk '{print $5}' || true
-#            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits
+            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Normalized intervals found \[%\]" | awk '{print $5}' || echo "NA"
+#            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Mapped reads \[% of total\]:" | awk '{print $6}'
+#echo            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1
+
 
         done
     done

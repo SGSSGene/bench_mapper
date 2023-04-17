@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -Eeuo pipefail
 
 source $(dirname "$0")/setup.sh
 
