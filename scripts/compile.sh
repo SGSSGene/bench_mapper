@@ -3,55 +3,69 @@
 set -Eeuo pipefail
 
 cd "$(dirname "$0")"/..
+if [ $# -ge 1 ] && [ "$1" == "--clean" ]; then
+    rm -rf submodules/fmindex-collection/build
+    rm -rf submodules/radixSA64/build
+    rm -rf submodules/seqan3_tools/build
+    rm -rf submodules/columba/build
+    rm -rf submodules/seqan/build
+    (cd submodules/bwolo/bwolo/src; rm *.d *.o ../bwolo)
+    (cd submodules/bwolo/fasta2Fmi/src/; rm *.d *.o ../fasta2Fmi)
+    (cd submodules/bowtie2; make clean)
 
-clean=
-if [ $# -gt 1 ] && [ "$1" == "--clean" ]; then
-    clean=1
+    echo "cleaned/removed build folders"
+    exit
 fi
 
 
 # Build tools
-test "${clean}" && rm -rf submodules/fmindex-collection/build
 mkdir -p submodules/fmindex-collection/build
 (
+    echo "# Building fmindex-collection (sahara)"
     cd submodules/fmindex-collection/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
     make
 )
 
-test "${clean}" && rm -rf submodules/radixSA64/build
 mkdir -p submodules/radixSA64/build
 (
+    echo "# Building radixSA64"
     cd submodules/radixSA64/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
     make
 )
 
-test "${clean}" && rm -rf submodules/seqan3_tools/build
 mkdir -p submodules/seqan3_tools/build
 (
+    echo "# Building seqan3_tools"
+    source setup.sh
+    source .miniconda3/bin/activate
     cd submodules/seqan3_tools/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native" -DNODIVSUFSORT=1
     make
 )
 
-test "${clean}" && rm -rf submodules/columba/build
 mkdir -p submodules/columba/build
 (
+    echo "# Building columba"
+    source .miniconda3/bin/activate
     cd submodules/columba/build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native" -DSPARSEHASH_INCLUDE_DIR=${HOMEBREW_PREFIX}/include
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
     make
 )
 
 (
+    echo "# Building bwolo"
+    source setup.sh
     cd submodules/bwolo
     make
 )
 
 
-test "${clean}" && rm -rf submodules/seqan/build
 mkdir -p submodules/seqan/build
 (
+    echo "# Building seqan2 (rabema)"
+    source .miniconda3/bin/activate
     cd submodules/seqan/build
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native"
     make rabema_evaluate rabema_build_gold_standard mason_simulator razers3 rabema_prepare_sam
@@ -59,7 +73,7 @@ mkdir -p submodules/seqan/build
 
 
 (
+    echo "# Building bowtie2"
     cd submodules/bowtie2
-    test "${clean}" && make clean
     make
 )
