@@ -1,4 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
 
 source $(dirname "$0")/setup.sh
 
@@ -22,7 +24,13 @@ fi
 
 input="${tmp}/input_${len}_${error}.fa"
 ln -rfs "${fasta_file}" "${input}"
-columba -s 16 -e $error -i 0 -p uniform -ss kuch1 -m editnaive "${tmp}/index" "${input}" | grep "Total duration" | awk '{printf "%s\n",$3}' > ${timing_file}
+val="$(columba -s 16 -e $error -i 0 -p uniform -ss kuch1 -m editnaive "${tmp}/index" "${input}" | grep "Total duration" | awk '{printf "%s\n",$3}' || echo "F")"
+if [ $(echo "${val}" | tail -n 1 | rev | cut -b 1) == "F" ]; then
+    echo "F" > ${timing_file}
+    exit
+fi
+echo $val > ${timing_file}
+
 
 tail +2 ${input}_output.txt | awk '{if ($6 == 0) { print $1; } else { print $1 "_rev"; }}' | st_name_id_mapper ${input} --revCompl --version-check false > ${tmp_s}.ids
 tail +2 ${input}_output.txt | awk '{print $2}' | st_multistring_filter "${index}" $minlen --version-check false | paste -d ' ' ${tmp_s}.ids - | sort -n > ${tmp_s}.pos

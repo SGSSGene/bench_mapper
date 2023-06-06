@@ -1,6 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-source $(dirname "$0")/setup.sh
+set -Eeuo pipefail
 
 if [ ${error} -gt 4 ]; then
     echo "NA" > ${timing_file}
