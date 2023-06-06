@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 set -Eeuo pipefail
 
@@ -10,7 +10,6 @@ for t in ${tools[@]}; do
             echo -n "$t $e $l "
             bash ${script_path}/wrapper/${t}.sh "${t}" ${l} ${e}
             cat ${data}/timing/${t}/time_${l}_${e}.txt
-
         done
     done
 done
