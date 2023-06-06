@@ -21,5 +21,6 @@ timing_file=${data}/timing/${tool}/time_${len}_${error}.txt
 
 
 if [ -e "${sam_file}" ]; then
+    echo "${tool} file ${sam_file} exists - skipping"
     exit
 fi
