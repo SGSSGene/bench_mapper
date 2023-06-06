@@ -3,6 +3,7 @@ set -Eeuo pipefail
 tool="$1"; shift
 len="$1"; shift
 error="$1"; shift
+data="${DATA}"
 
 error_rate=$(expr ${error} \* 100 / ${len} || true)
 identity=$(expr 100 - ${error_rate} || true)
