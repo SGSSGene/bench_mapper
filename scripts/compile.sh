@@ -9,8 +9,8 @@ if [ $# -ge 1 ] && [ "$1" == "--clean" ]; then
     rm -rf submodules/seqan3_tools/build
     rm -rf submodules/columba/build
     rm -rf submodules/seqan/build
-    (cd submodules/bwolo/bwolo/src; rm *.d *.o ../bwolo)
-    (cd submodules/bwolo/fasta2Fmi/src/; rm *.d *.o ../fasta2Fmi)
+    (cd submodules/bwolo/bwolo/src; rm -f *.d *.o ../bwolo)
+    (cd submodules/bwolo/fasta2Fmi/src/; rm -f *.d *.o ../fasta2Fmi)
     (cd submodules/bowtie2; make clean)
 
     echo "cleaned/removed build folders"
