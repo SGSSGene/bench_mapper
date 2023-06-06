@@ -33,11 +33,10 @@ for t in ${tools[@]}; do
                 continue
             fi
             echo -n "$t $e $l "
-            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Normalized intervals found \[%\]" | awk '{print $5}' || echo "NA"
-#            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Mapped reads \[% of total\]:" | awk '{print $6}'
-#echo            rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1
-
-
+            if [ ! -e "${hit_file}" ]; then
+                rabema_evaluate -e ${per} -r ${index} -g ${file_gold} -b ${file_sam} --DONT-PANIC --show-additional-hits 2>&1 | grep "Normalized intervals found \[%\]" | awk '{print $5}' > "${hit_file}" || echo "-" > "${hit_file}"
+            fi
+            cat "${hit_file}"
         done
     done
 done
