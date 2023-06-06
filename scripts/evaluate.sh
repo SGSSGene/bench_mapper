@@ -16,15 +16,20 @@ set -Eeuo pipefail
 #tools=(columba bwolo sahara_allbesthits sahara_onebesthit sahara bowtie2 bwa_aln bwa_mem yara razers3)
 
 for t in ${tools[@]}; do
+    mkdir -p "${data}/hits/${t}"
     for e in ${errors[@]}; do
         for l in ${lengths[@]}; do
             f=${t}/${l}_${e}
             file_sam=${data}/alignment/${f}.sam
             file_gold=${gsi}/razers3_${l}_${e}.gsi
+            hit_file="${data}/hits/${t}/${l}_${e}.txt"
 
             per=$(expr ${e} \* 100 / ${l} || true)
-            if [ ! -e "${file_sam}" ] || [ ! -e ${file_gold} ]; then
-                echo ${file_sam} or ${file_gold} is missing to run $t
+            if [ ! -e "${file_sam}" ]; then
+                echo "${file_sam} is missing to run $t ($e $l)"
+                continue
+            elif [ ! -e ${file_gold} ]; then
+                echo "${file_gold} is missing to run $t ($e $l)"
                 continue
             fi
             echo -n "$t $e $l "
